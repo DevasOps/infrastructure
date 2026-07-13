@@ -1,11 +1,11 @@
 { pkgs, inputs, ... }:
 {
   # User Info
-  username = "nhan";
-  description = "Nhan Pham";
+  username = "nixos";
+  description = "nixos name";
   git = {
-    userName = "Nitestack";
-    userEmail = "code@npham.de";
+    userName = "DevasOps";
+    userEmail = "qyltssob@gmail.com";
   };
   # Fonts
   font = {

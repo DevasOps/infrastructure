@@ -1,6 +1,6 @@
 keys:
-  - &admin_nhan 8513831BE7E4992E18FBCE9CD0D0238A27FD8B89
-  - &wslstation_ssh age15axfejr5vv72cgx9uy9uwg7u505c00fch9v7w7nf8ramlzy4zqyqq7wce6
+  - &admin_nhan C45873BFAFC6CA99ECD5CCC60B5F787D9DDB8FFF
+  - &wslstation_ssh age1ccdyr35kln0gdzcg0vk8z5svppcdm27w3fcd93gekk3p0decq9jqcc0y0v 
   - &homestation_ssh age1jrffh0x49q62pvk5z666yy03spps0v4tctacfckdytl4enh94c8q3ypt2w
 
 creation_rules:
