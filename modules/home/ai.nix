@@ -45,7 +45,7 @@ in
         };
         # read auth token from sops decrypted file at runtime, key never in store/git
         apiKeyHelper = "cat ${aixKeyPath}";
-        model = "claude-sonnet-5";
+        model = "claude-opus-4-8";
         statusLine = {
           type = "command";
           command = "bash \"${inputs.caveman}/src/hooks/caveman-statusline.sh\"";
