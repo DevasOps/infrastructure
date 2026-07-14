@@ -1,10 +1,16 @@
 # ╭──────────────────────────────────────────────────────────╮
 # │ AI                                                       │
 # ╰──────────────────────────────────────────────────────────╯
-{ flake, ... }:
+{
+  flake,
+  osConfig,
+  ...
+}:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  # sops decrypted aix/p key file path (0400, owner only)
+  aixKeyPath = osConfig.sops.secrets."aix/p".path;
 in
 {
   imports = [
@@ -34,8 +40,12 @@ in
         };
         env = {
           CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1";
+          # iflytek Claude transfer station (Anthropic compatible endpoint)
+          ANTHROPIC_BASE_URL = "https://one.iflytek.com/api/llm/console/chat";
         };
-        model = "sonnet[1m]";
+        # read auth token from sops decrypted file at runtime, key never in store/git
+        apiKeyHelper = "cat ${aixKeyPath}";
+        model = "claude-sonnet-5";
         statusLine = {
           type = "command";
           command = "bash \"${inputs.caveman}/src/hooks/caveman-statusline.sh\"";
@@ -45,14 +55,5 @@ in
         inputs.superpowers
       ];
     };
-    # codex = {
-    #   enable = true;
-    #   settings = {
-    #     commit_attribution = "";
-    #     approval_policy = "never";
-    #     sandbox_mode = "workspace-write";
-    #     personality = "pragmatic";
-    #   };
-    # };
   };
 }
