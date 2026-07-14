@@ -32,6 +32,11 @@ in
     startMenuLaunchers = true;
     useWindowsDriver = true;
     wslConf.network.hostname = "wslstation";
+    # Don't inject Windows' PATH into WSL. The ~105 /mnt/c entries live on
+    # slow drvfs, and Nushell's external completer scans PATH as you type,
+    # which caused noticeable keystroke latency. Interop stays enabled, so
+    # Windows exes still run via full path (e.g. explorer.exe).
+    wslConf.interop.appendWindowsPath = false;
   };
 
   # ── Home Manager ──────────────────────────────────────────────────────
