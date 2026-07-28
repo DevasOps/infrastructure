@@ -12,6 +12,7 @@ M.options = {
   formatoptions = "jqlnt", -- Formatting options
   helplang = "de", -- Set the language for the help messages
   swapfile = false, -- Disable swap file
+  mousemodel = "extend", -- 右键不再弹出上下文菜单（改为选区扩展）
 
   -- Indentation
   softtabstop = 2, -- Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
