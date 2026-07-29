@@ -33,10 +33,6 @@ local M = {
       "<leader>ft",
       "<leader>fT",
     },
-    [{ "i", "x", "n", "s" }] = {
-      -- Save
-      "<C-s>",
-    },
   },
 }
 
@@ -45,6 +41,14 @@ M.mappings[{ "n", "v" }] = {
   ["D"] = {
     [["_d]],
     desc = "Delete without copying into register",
+  },
+}
+
+M.mappings[{ "i", "x", "n", "s" }] = {
+  -- Save file
+  ["<C-s>"] = {
+    "<cmd>w<cr><esc>",
+    desc = "Save File",
   },
 }
 
