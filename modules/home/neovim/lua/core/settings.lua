@@ -60,16 +60,20 @@ function M.run()
 
   -- Setup WSL clipboard
   if utils.is_wsl() then
-    -- Sync WSL clipboard with Windows clipboard
+    -- Sync WSL clipboard with Windows clipboard via win32yank.
+    -- win32yank handles UTF-8 correctly in both directions (unlike clip.exe,
+    -- which decodes stdin as the console codepage and mangles CJK text).
+    -- Use an absolute path so we don't depend on Windows PATH injection,
+    -- which is disabled here to keep Nushell startup fast.
     vim.g.clipboard = {
-      name = "WslClipboard",
+      name = "win32yank",
       copy = {
-        ["+"] = "/mnt/c/Windows/System32/clip.exe",
-        ["*"] = "/mnt/c/Windows/System32/clip.exe",
+        ["+"] = "/mnt/c/Windows/win32yank.exe -i --crlf",
+        ["*"] = "/mnt/c/Windows/win32yank.exe -i --crlf",
       },
       paste = {
-        ["+"] = [[/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
-        ["*"] = [[/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
+        ["+"] = "/mnt/c/Windows/win32yank.exe -o --lf",
+        ["*"] = "/mnt/c/Windows/win32yank.exe -o --lf",
       },
       cache_enabled = 0,
     }
