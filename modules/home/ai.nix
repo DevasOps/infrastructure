@@ -34,9 +34,11 @@ in
       enable = true;
       settings = {
         includeCoAuthoredBy = false;
+        # top-level key: Claude Code reads W5()=userSettings.skipDangerousModePermissionPrompt
+        # (NOT permissions.*), otherwise the bypass warning shows on every launch
+        skipDangerousModePermissionPrompt = true;
         permissions = {
           defaultMode = "bypassPermissions";
-          skipDangerousModePermissionPrompt = true;
         };
         env = {
           CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1";
