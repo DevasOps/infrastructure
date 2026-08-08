@@ -95,5 +95,5 @@ in
     zsh.enable = true;
   };
 
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Asia/Shanghai";
 }
